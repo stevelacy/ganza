@@ -1,6 +1,6 @@
 <p align="center">
   <br>
-  <img src="src/assets/logo.png" alt="Ganza" width="100">
+  <img src="logo.png" alt="Ganza" width="100">
   <h1 align="center"> Ganza </h1>
   <p align="center"> Cross platform Video player built with React.js and Electron </p>
   <p align="center"> ChromeCast support included </p>
