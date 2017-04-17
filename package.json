@@ -1,0 +1,68 @@
+{
+  "name": "ganza",
+  "version": "0.1.0",
+  "description": "Cross platform Video player built with React.js and Electron",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava",
+    "start": "electron .",
+    "dev": "webpack -w",
+    "build:app": "webpack && mkdir -p dist/app/dist && cp -t ./dist/app/ index.html index.css package.json index.js && cp dist/bundle.js dist/app/dist/ && cp src/assets/logo.png dist/app/ && mkdir -p ./dist/app/node_modules/",
+    "build:linux": "npm run build:app && electron-packager ./dist/app/ --overwrite --out=dist --electron-version=1.4.13 --platform=linux --arch=x64 --app-bundle-id=com.stevelacy.ganza --app-version=$npm_package_version && cp -r node_modules/ ./dist/ganza-linux-x64/resources/app/ && cd dist/ && tar -czvf ./ganza-linux-${npm_package_version}.tar.gz ganza-linux-x64/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stevelacy/ganza.git"
+  },
+  "keywords": [
+    "video",
+    "player",
+    "vlc",
+    "media",
+    "electron"
+  ],
+  "author": "Steve Lacy <me@slacy.me> (http://slacy.me)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stevelacy/ganza/issues"
+  },
+  "homepage": "https://github.com/stevelacy/ganza#readme",
+  "dependencies": {
+    "electron": "^1.4.14",
+    "electron-debug": "^1.1.0",
+    "pretty-ms": "^2.1.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "serve-static": "^1.11.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "bytebuffer": "^5.0.1",
+    "chromecasts": "stevelacy/chromecasts",
+    "classnames": "^2.2.5",
+    "css-loader": "^0.26.1",
+    "electron-packager": "^8.6.0",
+    "electron-reload": "^1.1.0",
+    "file-loader": "^0.9.0",
+    "json-loader": "^0.5.4",
+    "node-sass": "^4.3.0",
+    "protobufjs": "dcodeIO/protobuf.js",
+    "react-fa": "^4.1.2",
+    "sass-loader": "^4.1.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "v8-lazy-parse-webpack-plugin": "TheLarkInn/LazyParseWebpackPlugin",
+    "webpack": "^1.15.0"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "es2015",
+      "stage-0"
+    ]
+  }
+}

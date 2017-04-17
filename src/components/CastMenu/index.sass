@@ -1,0 +1,59 @@
+$color-accent: #00BCD4
+
+.button
+  color: #fff
+  padding: 10px 15px
+
+.modal-component
+  position: relative
+  z-index: 4
+  padding: 20px
+  background: #cdcdcd
+  position: fixed
+  top: 10%
+  right: 10%
+  bottom: 10%
+  left: 10%
+  .close
+    position: absolute
+    top: -5px
+    right: -5px
+    background: #fff
+    padding: 10px
+    height: 38px
+    width: 38px
+    color: #000
+
+.cast-menu-component
+  display: flex
+  flex-direction: column
+  box-shadow: 0 2px 10px rgba(100, 100, 100, .7)
+  &.searching, .flex-wrapper
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    text-align: center
+    .search-icon
+      font-size: 40px
+  .device
+    background: #fff
+    box-shadow: 0 1px 3px rgba(100, 100, 100, .3)
+    display: flex
+    padding: 20px
+    align-items: center
+    justify-content: space-between
+    .info
+      flex-direction: column
+    .button.cast
+      background: $color-accent
+      &.active
+        background: #F44336
+
+  .device-controls
+    margin-top: auto
+    display: flex
+    justify-content: center
+    align-items: center
+    .button.stop
+      background: #F44336
+
