@@ -29,9 +29,9 @@ export default class Player extends PureComponent {
   }
   componentDidMount () {
     console.log(electron.argv)
-    if (electron.argv[2]) {
+    if (electron.argv[1] || electron.argv[2]) {
       this.setState({
-        sources: [{ path: electron.argv[2] }]
+        sources: [{ path: electron.argv[2] || electron.argv[1] }]
       })
     }
     window.addEventListener('mousemove', this.startIdle.bind(this))
@@ -138,8 +138,15 @@ export default class Player extends PureComponent {
     this.setState({ castMenu: !this.state.castMenu })
     this.initCasts()
   }
-  handleInitialClick (e) {
-    console.log(e)
+  handleInitialClick () {
+    const dialog = remote.dialog.showOpenDialog({
+      properties: [ 'openFile' ]
+    })
+    if (!dialog || !dialog[0]) return
+
+    this.setState({
+      sources: [{ path: dialog[0] }]
+    })
   }
   render () {
     const source = this.state.sources[0] || {}
@@ -163,18 +170,19 @@ export default class Player extends PureComponent {
           onLoadedMetadata={() => this.handleVideoLoad()}
           onDoubleClick={() => this.handleDoubleClick()}
           className='video-element'
-          src={source.path} />
+          src={path.resolve(source.path)} />
       )
     }
     if (!source.path) {
       videoElement = (
-        <img src='logo.png' className='logo-loader' />
+        <div className='backdrop'
+          onClick={() => this.handleInitialClick()}>
+          <img src='logo.png' className='logo-loader' />
+        </div>
       )
     }
     return (
-      <div
-        onClick={this.handleInitialClick}
-        className='player-component'>
+      <div className='player-component'>
         <TopControls
           handleCastMenu={() => this.handleCastMenu()}
           source={source}

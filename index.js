@@ -3,7 +3,6 @@ const url = require('url')
 const http = require('http')
 const { app, BrowserWindow } = require('electron')
 const serveStatic = require('serve-static')
-require('electron-reload')(__dirname)
 require('electron-debug')({ enabled: true })
 
 let win
@@ -47,3 +46,6 @@ function createWindow () {
 }
 
 app.on('ready', createWindow)
+app.on('window-all-closed', function() {
+  app.quit()
+})

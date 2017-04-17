@@ -7,7 +7,7 @@
     "test": "ava",
     "start": "electron .",
     "dev": "webpack -w",
-    "build:app": "webpack && mkdir -p dist/app/dist && cp -t ./dist/app/ index.html index.css package.json index.js && cp dist/bundle.js dist/app/dist/ && cp src/assets/logo.png dist/app/ && mkdir -p ./dist/app/node_modules/",
+    "build:app": "rm -rf dist && webpack && mkdir -p dist/app/dist && cp -t ./dist/app/ index.html index.css package.json index.js && cp dist/bundle.js dist/app/dist/ && cp logo.png dist/app/ && mkdir -p ./dist/app/node_modules/",
     "build:linux": "npm run build:app && electron-packager ./dist/app/ --overwrite --out=dist --electron-version=1.4.13 --platform=linux --arch=x64 --app-bundle-id=com.stevelacy.ganza --app-version=$npm_package_version && cp -r node_modules/ ./dist/ganza-linux-x64/resources/app/ && cd dist/ && tar -czvf ./ganza-linux-${npm_package_version}.tar.gz ganza-linux-x64/*"
   },
   "repository": {
@@ -46,7 +46,6 @@
     "classnames": "^2.2.5",
     "css-loader": "^0.26.1",
     "electron-packager": "^8.6.0",
-    "electron-reload": "^1.1.0",
     "file-loader": "^0.9.0",
     "json-loader": "^0.5.4",
     "node-sass": "^4.3.0",
